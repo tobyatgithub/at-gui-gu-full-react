@@ -33,8 +33,9 @@ npm start // shall display
 
 ## Tasks:
 
-1. finish the starting point step above
-2. refactor the components (`List` and `Search`)
+1. (P67) finish the starting point step above
+2. (P67) refactor the components (`List` and `Search`)
+3. (P68) add search method for `Search` component (example github link: `https://api.github.com/search/users?q=xxx`)
 
 ## Solution
 
