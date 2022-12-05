@@ -48,6 +48,12 @@ npm start // shall display
 
 7. (P70) add loading, welcome words for first time user and error message.
 
+8. (P71) use pubsub-js to pass data from search to list directly (without needing to go via `App`)
+
 ## Solution
 
 Check the end folder for my solution.
+
+The P68-P70 solution is under `end/github-search/05_src_github_search_axios`.
+
+The P71 solution is under `end/github-search/src`
