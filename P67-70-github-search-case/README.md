@@ -42,7 +42,11 @@ npm start // shall display
 
 5. (P68) set up proxy (via `package.json` or use the `setupProxy.js`)
 
-> note: if the proxy server not working properly, can move forward with using the github api with adding timeout on `axios` calls to avoid potential api lock out.
+> note: if the proxy server not working properly, can move forward with using the github api.
+
+6. (P69) pass user data from search component to list component (users and setUsers)
+
+7. (P70) add loading and welcome words.
 
 ## Solution
 

@@ -23,8 +23,15 @@ export default class Search extends Component {
     //     console.log("failed", error);
     //   }
     // );
-    axios.get(`https://api.github.com/search/users?q=${userInput}`).then(
+    // axios.get(`https://api.github.com/search/users?q=${userInput}`).then(
+
+    axios({
+      method: "get",
+      url: `https://api.github.com/search/users?q=${userInput}`,
+      timeout: 2000,
+    }).then(
       (response) => {
+        this.props.setUsers(response.data.items);
         console.log("success", response.data);
       },
       (error) => {
