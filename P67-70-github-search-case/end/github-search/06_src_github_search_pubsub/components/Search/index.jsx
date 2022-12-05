@@ -26,7 +26,10 @@ export default class Search extends Component {
         console.log("success", response.data);
       },
       (error) => {
-        PubSub.publish("atguigu", { isLoading: false, reqError: error });
+        PubSub.publish("atguigu", {
+          isLoading: false,
+          reqError: error.message,
+        });
         console.log("failed", error);
       }
     );

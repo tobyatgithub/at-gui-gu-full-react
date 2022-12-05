@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import PubSub from "pubsub-js";
 export default class Search extends Component {
-  search = () => {
+  search = async () => {
     // 1. get the user input
     const {
       keyWordElement: { value: userInput },
@@ -12,24 +12,20 @@ export default class Search extends Component {
       isLoading: true,
     });
 
-    // 2. search
-    axios({
-      method: "get",
-      url: `https://api.github.com/search/users?q=${userInput}`,
-      timeout: 2000,
-    }).then(
-      (response) => {
-        PubSub.publish("atguigu", {
-          isLoading: false,
-          users: response.data.items,
-        });
-        console.log("success", response.data);
-      },
-      (error) => {
-        PubSub.publish("atguigu", { isLoading: false, reqError: error });
-        console.log("failed", error);
-      }
-    );
+    // 2. search fetch optimize
+    try {
+      const response = await fetch(
+        `https://api.github.com/search/users?q=${userInput}`
+      );
+      const data = await response.json();
+      PubSub.publish("atguigu", {
+        isLoading: false,
+        users: data.items,
+      });
+    } catch (error) {
+      console.log(error);
+      PubSub.publish("atguigu", { isLoading: false, reqError: error.message });
+    }
   };
 
   render() {
