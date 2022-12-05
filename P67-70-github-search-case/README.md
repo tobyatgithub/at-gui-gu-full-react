@@ -50,10 +50,14 @@ npm start // shall display
 
 8. (P71) use pubsub-js to pass data from search to list directly (without needing to go via `App` using states and props)
 
+9. (P72) use fetch instead of axios.
+
 ## Solution
 
 Check the end folder for my solution.
 
 The P68-P70 solution is under `end/github-search/05_src_github_search_axios`.
 
-The P71 solution is under `end/github-search/src`
+The P71 solution is under `end/github-search/06_src_github_search_pubsub`
+
+The P72 solution is under `end/github-search/07_src_github_search_fetch`
