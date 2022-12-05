@@ -46,7 +46,7 @@ npm start // shall display
 
 6. (P69) pass user data from search component to list component (users and setUsers)
 
-7. (P70) add loading and welcome words.
+7. (P70) add loading, welcome words for first time user and error message.
 
 ## Solution
 

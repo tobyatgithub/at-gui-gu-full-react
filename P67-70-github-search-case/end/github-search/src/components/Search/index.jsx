@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 export default class Search extends Component {
   search = () => {
-    // get the user input
+    // 1. get the user input
 
     // method 1 - common method via chain
     // const userInput = this.keyWordElement.value;
@@ -11,10 +11,12 @@ export default class Search extends Component {
     const {
       keyWordElement: { value: userInput },
     } = this;
+    // console.log(userInput);
 
-    console.log(userInput);
+    this.props.setAppState({ isFirstTimeShowWelcome: false, isLoading: true });
 
-    // send request
+    // 2. send request
+    // you can using proxy to bypass the api lock out issue.
     // axios.get(`http://localhost:3000/api1/search/users2?q=${userInput}`).then(
     //   (response) => {
     //     console.log("success", response.data);
@@ -23,18 +25,22 @@ export default class Search extends Component {
     //     console.log("failed", error);
     //   }
     // );
-    // axios.get(`https://api.github.com/search/users?q=${userInput}`).then(
 
+    // or, we can use github api directly.
     axios({
       method: "get",
       url: `https://api.github.com/search/users?q=${userInput}`,
       timeout: 2000,
     }).then(
       (response) => {
-        this.props.setUsers(response.data.items);
+        this.props.setAppState({
+          isLoading: false,
+          users: response.data.items,
+        });
         console.log("success", response.data);
       },
       (error) => {
+        this.props.setAppState({ isLoading: false, reqError: error });
         console.log("failed", error);
       }
     );
