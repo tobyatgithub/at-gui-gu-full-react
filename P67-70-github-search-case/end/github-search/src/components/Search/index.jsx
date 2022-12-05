@@ -1,46 +1,32 @@
 import React, { Component } from "react";
 import axios from "axios";
+import PubSub from "pubsub-js";
 export default class Search extends Component {
   search = () => {
     // 1. get the user input
-
-    // method 1 - common method via chain
-    // const userInput = this.keyWordElement.value;
-
-    // method 2 - continuous deconstruct with rename
     const {
       keyWordElement: { value: userInput },
     } = this;
-    // console.log(userInput);
+    PubSub.publish("atguigu", {
+      isFirstTimeShowWelcome: false,
+      isLoading: true,
+    });
 
-    this.props.setAppState({ isFirstTimeShowWelcome: false, isLoading: true });
-
-    // 2. send request
-    // you can using proxy to bypass the api lock out issue.
-    // axios.get(`http://localhost:3000/api1/search/users2?q=${userInput}`).then(
-    //   (response) => {
-    //     console.log("success", response.data);
-    //   },
-    //   (error) => {
-    //     console.log("failed", error);
-    //   }
-    // );
-
-    // or, we can use github api directly.
+    // 2. search
     axios({
       method: "get",
       url: `https://api.github.com/search/users?q=${userInput}`,
       timeout: 2000,
     }).then(
       (response) => {
-        this.props.setAppState({
+        PubSub.publish("atguigu", {
           isLoading: false,
           users: response.data.items,
         });
         console.log("success", response.data);
       },
       (error) => {
-        this.props.setAppState({ isLoading: false, reqError: error });
+        PubSub.publish("atguigu", { isLoading: false, reqError: error });
         console.log("failed", error);
       }
     );

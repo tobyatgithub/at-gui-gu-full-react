@@ -48,7 +48,7 @@ npm start // shall display
 
 7. (P70) add loading, welcome words for first time user and error message.
 
-8. (P71) use pubsub-js to pass data from search to list directly (without needing to go via `App`)
+8. (P71) use pubsub-js to pass data from search to list directly (without needing to go via `App` using states and props)
 
 ## Solution
 
