@@ -36,6 +36,13 @@ npm start // shall display
 1. (P67) finish the starting point step above
 2. (P67) refactor the components (`List` and `Search`)
 3. (P68) add search method for `Search` component (example github link: `https://api.github.com/search/users?q=xxx`)
+4. (P68) test the github api mock server at `server` folder (go there, `npm start`, check the content in `http://localhost:5000/search/users?q=xxx`)
+
+> note on step 4: port 5000 on mac is occupied by the system, thus will need to use a different port. The server may not work but the `users2` shall work as expected.
+
+5. (P68) set up proxy (via `package.json` or use the `setupProxy.js`)
+
+> note: if the proxy server not working properly, can move forward with using the github api with adding timeout on `axios` calls to avoid potential api lock out.
 
 ## Solution
 

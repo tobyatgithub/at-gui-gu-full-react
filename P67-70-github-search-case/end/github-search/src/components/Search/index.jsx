@@ -15,9 +15,21 @@ export default class Search extends Component {
     console.log(userInput);
 
     // send request
+    // axios.get(`http://localhost:3000/api1/search/users2?q=${userInput}`).then(
+    //   (response) => {
+    //     console.log("success", response.data);
+    //   },
+    //   (error) => {
+    //     console.log("failed", error);
+    //   }
+    // );
     axios.get(`https://api.github.com/search/users?q=${userInput}`).then(
-      (response) => {},
-      (error) => {}
+      (response) => {
+        console.log("success", response.data);
+      },
+      (error) => {
+        console.log("failed", error);
+      }
     );
   };
 
