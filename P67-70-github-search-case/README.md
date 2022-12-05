@@ -1,10 +1,12 @@
 # Intro
 
-Following the [class 67](https://www.bilibili.com/video/BV1wy4y1D7JT/?p=67&vd_source=8db9aed6fce93c76e5e70916df97c4be),
+Following the 尚硅谷 react 全家桶教程 [class 67-73](https://www.bilibili.com/video/BV1wy4y1D7JT/?p=67&vd_source=8db9aed6fce93c76e5e70916df97c4be),
 
 # How to Use
 
 ## Starting point
+
+---
 
 The starting code is inside `./start/github-search` folder.
 
@@ -31,7 +33,11 @@ cp ../../start/github-search/src/App.js ./src/App.js
 npm start // shall display
 ```
 
+---
+
 ## Tasks:
+
+---
 
 1. (P67) finish the starting point step above
 2. (P67) refactor the components (`List` and `Search`)
@@ -52,7 +58,11 @@ npm start // shall display
 
 9. (P72) use fetch instead of axios.
 
+---
+
 ## Solution
+
+---
 
 Check the end folder for my solution.
 
@@ -61,3 +71,48 @@ The P68-P70 solution is under `end/github-search/05_src_github_search_axios`.
 The P71 solution is under `end/github-search/06_src_github_search_pubsub`
 
 The P72 solution is under `end/github-search/07_src_github_search_fetch`
+
+If success, your website shall display this welcome page once initialized:
+
+![init-page](./end-init.png)
+
+Hit "search" shall display "loading" element, and then show the first 30 results:
+
+![result-page](./end-result.png)
+
+---
+
+## github 搜索案例相关知识点
+
+---
+
+1. 设计状态时要考虑全面，例如带有网络请求的组件，要考虑请求失败怎么办。
+
+2. ES6 小知识点：解构赋值+重命名
+
+```js
+let obj = { a: { b: 1 } };
+const { a } = obj; //传统解构赋值
+const {
+  a: { b },
+} = obj; //连续解构赋值
+const {
+  a: { b: value },
+} = obj; //连续解构赋值+重命名
+```
+
+3. 消息订阅与发布机制
+   - 先订阅，再发布（理解：有一种隔空对话的感觉）
+   - 适用于任意组件间通信
+   - 要在组件的 `componentWillUnmount` 中取消订阅
+4. fetch 发送请求（关注分离的设计思想）
+
+```js
+try {
+  const response = await fetch(`/api1/search/users2?q=${keyWord}`);
+  const data = await response.json();
+  console.log(data);
+} catch (error) {
+  console.log("请求出错", error);
+}
+```
